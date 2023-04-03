@@ -1,20 +1,28 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import ReactDOM from 'react-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Layout from './pages/Layout';
+import Home from './pages/home';
+import Blogs from './pages/Blog';
+import MovieList from './pages/Movies';
 
-class Welcome extends React.Component {
-  render() {
-    return <h1>The Joel Hilton Film Collection</h1>;
-  }
-}
-
+// creates the routes for the website
 function App() {
   return (
-    <div>
-      <Welcome />
-      <img src="JoelHiltonHeadshot.jpg" alt="Joel Hilton"></img>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path="blogs" element={<Blogs />} />
+          <Route path="movies" element={<MovieList />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
+
+ReactDOM.render(<App />, document.getElementById('root'));
 
 export default App;
